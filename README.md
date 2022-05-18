@@ -1,2 +1,2 @@
 # mygram
-My first seriosly project.
+My first seriously project.
