@@ -1,14 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Mygram" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Mygram" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_src</item>
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar. -->
         <item name="android:windowFullscreen">true</item>
         <!-- Customize your theme here. -->
-
     </style>
 </resources>
