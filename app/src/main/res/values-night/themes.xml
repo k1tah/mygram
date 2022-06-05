@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Dark application theme. -->
     <style name="Theme.Mygram" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
