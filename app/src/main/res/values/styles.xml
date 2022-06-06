@@ -2,5 +2,10 @@
 <resources>
     <style name="text_style" parent="@android:style/TextAppearance">
         <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_day_color</item>
+    </style>
+    <style name="text_style_night" parent="@android:style/TextAppearance">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white_lite</item>
     </style>
 </resources>
