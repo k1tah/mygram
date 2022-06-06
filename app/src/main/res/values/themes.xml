@@ -10,5 +10,6 @@
         <!-- Status bar. -->
         <item name="android:windowFullscreen">true</item>
         <!-- Customize your theme here. -->
+        <item name="android:textViewStyle">@style/text_style</item>
     </style>
 </resources>
