@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyGramm</string>
+    <string name="account_name">account name</string>
+    <string name="account_number">account_number</string>
 </resources>

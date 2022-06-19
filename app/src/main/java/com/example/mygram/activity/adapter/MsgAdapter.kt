@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class MsdAdapter(context: Context): RecyclerView.Adapter<MsdAdapter.MsgViewHolder>() {
+class MsgAdapter(context: Context): RecyclerView.Adapter<MsgAdapter.MsgViewHolder>() {
 
     class MsgViewHolder(view: View): RecyclerView.ViewHolder(view){
 

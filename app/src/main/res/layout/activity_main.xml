@@ -8,17 +8,32 @@
     tools:context=".activity.MainActivity">
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="?attr/colorPrimaryVariant"
-        app:headerLayout="@layout/nav_header">
+        >
+
     </com.google.android.material.navigation.NavigationView>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryVariant" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="?attr/colorPrimaryVariant">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:title="@string/app_name"
+            app:titleTextColor="?attr/colorOnPrimary" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycler_view"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.drawerlayout.widget.DrawerLayout>
