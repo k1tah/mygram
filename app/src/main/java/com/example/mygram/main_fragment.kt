@@ -24,15 +24,15 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val toolbar = binding.toolbar
-        val drawerLayout = binding.drawerLayout
         val recyclerView = binding.recyclerView
         recyclerView.adapter = context?.let { MsgAdapter(it) }
-        toolbar.setNavigationOnClickListener {
-            drawerLayout.open()
-        }
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
 
