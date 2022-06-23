@@ -22,12 +22,6 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        val toolbar = binding.toolbar
-        val drawerLayout = binding.drawerLayout
-
-        toolbar.setNavigationOnClickListener {
-            drawerLayout.open()
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -9,5 +9,18 @@
         android:id="@+id/mainFragment"
         android:name="com.example.mygram.MainFragment"
         android:label="fragment_main_fragment"
-        tools:layout="@layout/fragment_main_fragment" />
+        tools:layout="@layout/fragment_main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_fragment_settings"
+            app:destination="@id/fragment_settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:name="com.example.mygram.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_fragment_settings_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
