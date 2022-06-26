@@ -8,4 +8,9 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/white_lite</item>
     </style>
+
+    <style name="header_style" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/header</item>
+    </style>
 </resources>

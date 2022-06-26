@@ -63,11 +63,9 @@ class MainFragment : Fragment() {
 
     override fun onDestroyView() {
         _binding = null
-        super.onDestroyView()
     }
 
     private fun navigation(direction: NavDirections){
         findNavController().navigate(direction)
     }
-
 }

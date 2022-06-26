@@ -2,10 +2,11 @@
     <!-- Dark application theme. -->
     <style name="Theme.Mygram" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/night_src</item>
-        <item name="colorPrimaryVariant">@color/night_osn</item>
+        <item name="colorPrimaryVariant">@color/night_src</item>
+        <item name="colorPrimary">@color/night_osn</item>
         <item name="colorOnPrimary">@color/white_lite</item>
         <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/night_sec</item>
         <item name="colorOnSecondary">@color/white_lite</item>
         <!-- Status bar. -->
         <item name="android:windowFullscreen">true</item>

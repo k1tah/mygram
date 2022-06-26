@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="header">#368791</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="day_src">#B6A3A3</color>
     <color name="white_lite">#B4FFFFFF</color>
     <color name="text_day_color">#474040</color>
     <color name="blue_src">#4B5BC5</color>
+    <!-- night colors-->
     <color name="night_src">#292D45</color>
+    <color name="night_sec">#444D77</color>
     <color name="night_osn">#334185</color>
     <!--test colors-->
     <color name="test">#3D9107</color>
