@@ -5,6 +5,7 @@ import android.text.InputFilter
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
@@ -36,7 +37,7 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainFragmentBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_fragment, container, false)
         return binding.root
     }
 
@@ -63,6 +64,7 @@ class MainFragment : Fragment() {
 
     override fun onDestroyView() {
         _binding = null
+        super.onDestroyView()
     }
 
     private fun navigation(direction: NavDirections){
