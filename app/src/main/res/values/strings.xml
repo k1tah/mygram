@@ -17,4 +17,5 @@
     <string name="account_state">account_state</string>
     <string name="account">Account</string>
     <string name="help">Help</string>
+    <string name="new_group_title">New Group</string>
 </resources>

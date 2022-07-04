@@ -5,6 +5,7 @@ import android.text.InputFilter
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import com.example.mygram.activity.MainActivity
 import com.example.mygram.activity.adapter.MsgAdapter
 import com.example.mygram.databinding.FragmentMainFragmentBinding
@@ -24,13 +26,43 @@ import com.google.android.material.navigation.NavigationView
 
 
 class MainFragment : Fragment() {
+
+    class MainFragmentOnPressedCallBack(
+        private val slidingPaneLayout: SlidingPaneLayout
+    ): OnBackPressedCallback(slidingPaneLayout.isSlideable && slidingPaneLayout.isOpen),
+
+        SlidingPaneLayout.PanelSlideListener{
+
+        init {
+            slidingPaneLayout.addPanelSlideListener(this)
+        }
+
+        override fun handleOnBackPressed() {
+            slidingPaneLayout.closePane()
+        }
+
+        override fun onPanelSlide(panel: View, slideOffset: Float) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onPanelOpened(panel: View) {
+            isEnabled = true
+        }
+
+        override fun onPanelClosed(panel: View) {
+            isEnabled = false
+        }
+
+    }
+
+
+
     //viewBinding
     private var _binding: FragmentMainFragmentBinding? = null
     private val binding get() = _binding!!
     //viewModel
     private val viewModel: ViewModel by viewModels()
-    //navigation actions
-    private val settingsNavigate = MainFragmentDirections.actionMainFragmentToFragmentSettings()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,15 +83,18 @@ class MainFragment : Fragment() {
 
         toolbar.setNavigationOnClickListener {
             drawerLayout.open()
-            Log.d(Const.testTag, "test")
         }
+
         navigationView.setupWithNavController(findNavController())
         navigationView.setNavigationItemSelectedListener{
            when(it.itemId){
-               R.id.settings -> navigation(settingsNavigate)
+               R.id.settings -> navigation(R.id.fragment_settings)
+
+               R.id.new_group -> navigation(R.id.newGroupFragment)
            }
            true
         }
+
     }
 
     override fun onDestroyView() {
@@ -67,7 +102,7 @@ class MainFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun navigation(direction: NavDirections){
-        findNavController().navigate(direction)
+    private fun navigation(resId: Int){
+        findNavController().navigate(resId)
     }
 }

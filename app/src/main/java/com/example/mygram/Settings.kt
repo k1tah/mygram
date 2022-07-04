@@ -13,10 +13,12 @@ import com.example.mygram.databinding.FragmentSettingsBinding
 import com.example.mygram.viewModel.ViewModel
 
 class Settings : Fragment() {
+
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
+
     private val viewModel: ViewModel by viewModels()
-    private val backNavigate = SettingsDirections.actionFragmentSettingsToMainFragment()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,11 +33,11 @@ class Settings : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_fragment_settings_to_mainFragment)
         }
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         _binding = null
         super.onDestroy()
     }
