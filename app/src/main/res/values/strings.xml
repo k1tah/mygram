@@ -18,4 +18,5 @@
     <string name="account">Account</string>
     <string name="help">Help</string>
     <string name="new_group_title">New Group</string>
+    <string name="message">message</string>
 </resources>

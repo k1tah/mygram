@@ -1,4 +1,4 @@
-package com.example.mygram.activity.adapter
+package com.example.mygram.adapter
 
 import android.content.Context
 import android.view.View

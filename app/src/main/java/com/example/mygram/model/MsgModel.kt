@@ -1,3 +1,3 @@
-package com.example.mygram.activity.model
+package com.example.mygram.model
 
 data class MsgModel(val message: String)
