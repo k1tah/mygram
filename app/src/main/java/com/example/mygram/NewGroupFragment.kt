@@ -40,7 +40,7 @@ class NewGroupFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroy()
         _binding = null
+        super.onDestroyView()
     }
 }

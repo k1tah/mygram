@@ -38,7 +38,7 @@ class Settings : Fragment() {
 
     override fun onDestroyView() {
         _binding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 
 }
