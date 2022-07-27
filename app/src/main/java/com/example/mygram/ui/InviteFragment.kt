@@ -1,4 +1,4 @@
-package com.example.mygram
+package com.example.mygram.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,31 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import com.example.mygram.databinding.FragmentCallBinding
-import com.example.mygram.viewModel.ViewModel
+import com.example.mygram.R
+import com.example.mygram.databinding.FragmentInviteBinding
 
 
-class CallFragment : Fragment() {
+
+class InviteFragment : Fragment() {
     //viewBinding
-    private var _binding: FragmentCallBinding? = null
+    private var _binding: FragmentInviteBinding? = null
     private val binding get() = _binding!!
-    //viewModel
-    private val viewModel: ViewModel by viewModels()
-    //navigation actions
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_call, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_invite, container, false)
         return binding.root
     }
 
     override fun onDestroyView() {
         _binding = null
-        super.onDestroyView()
     }
 
 }

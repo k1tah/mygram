@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.mygram.MainFragment"
+        android:name="com.example.mygram.ui.MainFragment"
         android:label="fragment_main_fragment"
         tools:layout="@layout/fragment_main_fragment" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_settings"
-        android:name="com.example.mygram.Settings"
+        android:name="com.example.mygram.ui.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/newGroupFragment"
-        android:name="com.example.mygram.NewGroupFragment"
+        android:name="com.example.mygram.ui.NewGroupFragment"
         android:label="NewGroupFragment" >
         <action
             android:id="@+id/action_newGroupFragment_to_mainFragment"

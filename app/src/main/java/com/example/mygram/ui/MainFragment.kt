@@ -1,4 +1,4 @@
-package com.example.mygram
+package com.example.mygram.ui
 
 import android.os.Bundle
 import android.view.*
@@ -7,9 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.mygram.adapter.MsgAdapter
+import com.example.mygram.R
 import com.example.mygram.databinding.FragmentMainFragmentBinding
-import com.example.mygram.viewModel.ViewModel
+import com.example.mygram.ui.adapter.MessagesAdapter
+import com.example.mygram.viewModel.MessagesViewModel
 
 
 class MainFragment : Fragment() {
@@ -18,7 +19,7 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainFragmentBinding? = null
     private val binding get() = _binding!!
     //viewModel
-    private val viewModel: ViewModel by viewModels()
+    private val viewModel: MessagesViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -26,7 +27,8 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_fragment, container, false)
+        _binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_main_fragment, container, false)
         return binding.root
     }
 
@@ -36,7 +38,7 @@ class MainFragment : Fragment() {
         val drawerLayout = binding.drawerLayout
         val recyclerView = binding.recyclerView
 
-        recyclerView.adapter = context?.let { MsgAdapter(it) }
+        recyclerView.adapter = context?.let { MessagesAdapter(it) }
 
         toolbar.setNavigationOnClickListener {
             drawerLayout.open()

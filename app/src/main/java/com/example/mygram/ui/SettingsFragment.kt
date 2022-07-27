@@ -1,4 +1,4 @@
-package com.example.mygram
+package com.example.mygram.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,36 +6,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.mygram.databinding.FragmentNewGroupBinding
-import com.example.mygram.viewModel.ViewModel
+import com.example.mygram.R
+import com.example.mygram.databinding.FragmentSettingsBinding
 
 
-class NewGroupFragment : Fragment() {
-    //binding
-    private var _binding: FragmentNewGroupBinding? = null
-    private val binding get() =  _binding!!
-    //viewModel
-    private val viewModel: ViewModel by viewModels()
+class SettingsFragment : Fragment() {
 
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_new_group, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val toolbar = binding.toolbarSettings
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbar = binding.toolbarNewGroup
-
         toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_newGroupFragment_to_mainFragment)
+            findNavController().navigate(R.id.action_fragment_settings_to_mainFragment)
         }
     }
 
@@ -43,4 +38,5 @@ class NewGroupFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
+
 }

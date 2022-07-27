@@ -1,4 +1,4 @@
-package com.example.mygram.activity
+package com.example.mygram.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
