@@ -21,4 +21,6 @@
     <string name="message">message</string>
     <string name="about">about</string>
     <string name="test_message">test_message</string>
+    <string name="chat_settings">Chat settings</string>
+    <string name="notification_settings">Notification settings</string>
 </resources>
