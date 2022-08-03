@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="?attr/colorSecondary">
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/dialog_image"
         android:src="@drawable/ic_baseline_account_circle_24"
         android:layout_width="50dp"

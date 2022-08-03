@@ -7,26 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.mygram.R
-import com.example.mygram.databinding.FragmentInviteBinding
+import com.example.mygram.databinding.FragmentSingleChatBinding
 
 
+class SingleChatFragment : Fragment() {
 
-class InviteFragment : Fragment() {
-    //viewBinding
-    private var _binding: FragmentInviteBinding? = null
+    private var _binding: FragmentSingleChatBinding? = null
     private val binding get() = _binding!!
-
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_invite, container, false)
+    ): View? {
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_single_chat, container, false)
+        // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onDestroyView() {
         _binding = null
+        super.onDestroyView()
     }
-
 }

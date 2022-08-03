@@ -6,7 +6,7 @@
     android:background="?attr/colorPrimary"
     >
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/account_image"
         android:layout_width="70dp"
         android:layout_height="70dp"

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_reg"
+    app:startDestination="@id/aunteficationFragment">
+
+    <fragment
+        android:id="@+id/aunteficationFragment"
+        android:name="com.example.mygram.ui.AunteficationFragment"
+        android:label="AunteficationFragment" >
+        <action
+            android:id="@+id/action_aunteficationFragment_to_confirmPhoneFragment"
+            app:destination="@id/confirmPhoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmPhoneFragment"
+        android:name="com.example.mygram.ui.ConfirmPhoneFragment"
+        android:label="ConfirmPhoneFragment" >
+        <action
+            android:id="@+id/action_confirmPhoneFragment_to_aunteficationFragment"
+            app:destination="@id/aunteficationFragment"
+            app:popUpTo="@id/aunteficationFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="phoneNumber"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+</navigation>

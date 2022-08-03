@@ -11,10 +11,14 @@
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.2265" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/drawable/message_bg.xml" value="0.2265" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout-v26/activity_main.xml" value="0.14722222222222223" />
+        <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/activity_auntefication.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/dialog_item.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/fragment_.xml" value="0.31657608695652173" />
+        <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/fragment_auntefication.xml" value="0.24365942028985507" />
+        <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/fragment_auntefication2.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/fragment_call.xml" value="0.31657608695652173" />
+        <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/fragment_confirm_phone.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/fragment_contacts.xml" value="0.31657608695652173" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/fragment_favorites.xml" value="0.31657608695652173" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/fragment_invite.xml" value="0.31657608695652173" />
@@ -26,7 +30,9 @@
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/message_item.xml" value="0.31657608695652173" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/message_item_.xml" value="0.31657608695652173" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/nav_header.xml" value="0.31657608695652173" />
+        <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/single_chat_fragment.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/toolbar.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/layout/toolbar_single_chat.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/nicit/AndroidStudioProjects/mygram/app/src/main/res/menu/nav_menu.xml" value="0.365625" />
       </map>
     </option>

@@ -1,3 +1,3 @@
 object Const {
-    const val testTag = "test"
+    const val TEST_TAG = "test"
 }

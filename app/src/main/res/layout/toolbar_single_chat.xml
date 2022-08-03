@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/colorPrimary">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/toolbar_image"
+        android:layout_width="@dimen/accountImage_height"
+        android:layout_height="@dimen/accountImage_width"
+        android:layout_margin="@dimen/toolbar_marginTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_baseline_account_circle_24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chat_account_name"
+        app:layout_constraintStart_toEndOf="@+id/toolbar_image"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/toolbar_marginTop"
+        android:layout_marginStart="@dimen/toolbar_account_marginStart"
+        tools:text="@string/account_name"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chat_account_state"
+        app:layout_constraintStart_toEndOf="@+id/toolbar_image"
+        app:layout_constraintTop_toBottomOf="@+id/chat_account_name"
+        android:layout_marginStart="@dimen/toolbar_account_marginStart"
+        tools:text="@string/account_state"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

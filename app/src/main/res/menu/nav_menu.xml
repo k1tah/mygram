@@ -5,11 +5,7 @@
     <item android:title=""
         android:id="@+id/test">
         <menu>
-            <item
-                android:id="@+id/new_group"
-                android:title="@string/new_group"
-                android:icon="@drawable/ic_baseline_people_outline_24"
-                />
+
             <item
                 android:id="@+id/contacts"
                 android:title="@string/contacts"
@@ -20,16 +16,7 @@
                 android:title="@string/cals"
                 android:icon="@drawable/ic_baseline_call_24"
                 />
-            <item
-                android:id="@+id/peoples_nearby"
-                android:title="@string/people_nearby"
-                android:icon="@drawable/ic_baseline_near_me_24"
-                />
-            <item
-                android:id="@+id/favourites"
-                android:title="@string/favourites"
-                android:icon="@drawable/ic_baseline_bookmarks_24"
-                />
+
             <item
                 android:id="@+id/settings"
                 android:title="@string/settings"
@@ -39,16 +26,7 @@
     </item>
     <item android:title="">
         <menu>
-            <item
-                android:id="@+id/invite"
-                android:title="@string/invite"
-                android:icon="@drawable/ic_baseline_person_add_24"
-                />
-            <item
-                android:id="@+id/mygram_features"
-                android:title="@string/mygram_features"
-                android:icon="@drawable/ic_baseline_info_24"
-                />
+
         </menu>
     </item>
 </menu>

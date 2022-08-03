@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Toolbar-->
+    <dimen name="toolbar_account_marginStart">5dp</dimen>
+    <dimen name="toolbar_marginTop">7dp</dimen>
+    <dimen name="accountImage_width">45dp</dimen>
+    <dimen name="accountImage_height">45dp</dimen>
+    <dimen name="signInTitle_margin">70dp</dimen>
+
+</resources>

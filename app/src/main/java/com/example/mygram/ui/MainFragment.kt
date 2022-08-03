@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mygram.R
 import com.example.mygram.databinding.FragmentMainFragmentBinding
-import com.example.mygram.ui.adapter.MessagesAdapter
+//import com.example.mygram.ui.adapter.MessagesAdapter
 import com.example.mygram.viewModel.MessagesViewModel
 
 
@@ -38,7 +38,7 @@ class MainFragment : Fragment() {
         val drawerLayout = binding.drawerLayout
         val recyclerView = binding.recyclerView
 
-        recyclerView.adapter = context?.let { MessagesAdapter(it) }
+        //recyclerView.adapter = context?.let { MessagesAdapter(it) }
 
         toolbar.setNavigationOnClickListener {
             drawerLayout.open()
@@ -49,7 +49,6 @@ class MainFragment : Fragment() {
            when(it.itemId){
                R.id.settings -> navigation(R.id.fragment_settings)
 
-               R.id.new_group -> navigation(R.id.newGroupFragment)
            }
            true
         }
