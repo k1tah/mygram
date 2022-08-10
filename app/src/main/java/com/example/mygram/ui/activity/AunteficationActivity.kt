@@ -1,16 +1,11 @@
 package com.example.mygram.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.example.mygram.R
 import com.example.mygram.databinding.ActivityAunteficationBinding
-import com.google.firebase.auth.FirebaseAuth
 
 class AunteficationActivity : AppCompatActivity() {
 

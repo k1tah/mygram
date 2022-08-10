@@ -7,21 +7,23 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.mygram.R
 import com.example.mygram.databinding.ActivityMainBinding
+import com.example.mygram.utils.auth
+import com.example.mygram.utils.initFirebase
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private lateinit var auth: FirebaseAuth
+
+    init {
+        initFirebase()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //get auth instance
-        auth = FirebaseAuth.getInstance()
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment

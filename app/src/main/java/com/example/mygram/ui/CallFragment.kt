@@ -17,7 +17,7 @@ class CallFragment : Fragment() {
     private var _binding: FragmentCallBinding? = null
     private val binding get() = _binding!!
     //viewModel
-    private val viewModel: MessagesViewModel by viewModels()
+
     //navigation actions
 
     override fun onCreateView(

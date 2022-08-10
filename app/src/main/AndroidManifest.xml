@@ -18,9 +18,6 @@
         <activity
             android:name=".ui.activity.AunteficationActivity"
             android:exported="true">
-            <intent-filter>
-
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.MainActivity"

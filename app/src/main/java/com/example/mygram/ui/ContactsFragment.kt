@@ -17,7 +17,7 @@ class ContactsFragment : Fragment() {
     private var _binding: FragmentContactsBinding? = null
     private val binding get() = _binding!!
     //view Model
-    private val viewModel: ViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
