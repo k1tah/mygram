@@ -51,6 +51,7 @@ class AunteficationFragment : Fragment() {
                         Log.d(TEST_TAG, "sucs")
                         val intent = Intent(activity as AunteficationActivity, MainActivity::class.java)
                         startActivity(intent)
+                        (activity as AunteficationActivity).finish()
                     }
                 }
             }

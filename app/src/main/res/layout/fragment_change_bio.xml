@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ChangeBioFragment">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_bio"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar_bio"
+        app:layout_constraintVertical_bias="0.155">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/bio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/enter_your_bio_here" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/confirm_bio"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="?attr/colorPrimary"
+        android:text="@string/ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_bio" />
+</androidx.constraintlayout.widget.ConstraintLayout>

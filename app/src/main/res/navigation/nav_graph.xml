@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_accountInfoFragment_to_changeProfileNameFragment"
             app:destination="@id/changeProfileNameFragment" />
+        <action
+            android:id="@+id/action_accountInfoFragment_to_changeBioFragment"
+            app:destination="@id/changeBioFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeProfileNameFragment"
@@ -41,6 +44,17 @@
         android:label="ChangeProfileNameFragment" >
         <action
             android:id="@+id/action_changeProfileNameFragment_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeBioFragment"
+        android:name="com.example.mygram.ChangeBioFragment"
+        android:label="fragment_change_bio"
+        tools:layout="@layout/fragment_change_bio" >
+        <action
+            android:id="@+id/action_changeBioFragment_to_accountInfoFragment"
             app:destination="@id/accountInfoFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />

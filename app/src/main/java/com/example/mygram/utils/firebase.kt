@@ -18,9 +18,11 @@ const val NODE_USERS = "users"
 const val CHILD_ID = "id"
 const val CHILD_PHONE = "phone"
 const val CHILD_USERNAME = "name"
+const val CHILD_BIO = "bio"
 
 
 fun initFirebase(){
+    USER = User()
     auth = FirebaseAuth.getInstance()
     UID = auth.currentUser?.uid.toString()
     databaseRefRoot = Firebase.firestore

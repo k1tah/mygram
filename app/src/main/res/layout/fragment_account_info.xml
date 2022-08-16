@@ -146,6 +146,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/account_description_profile_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"

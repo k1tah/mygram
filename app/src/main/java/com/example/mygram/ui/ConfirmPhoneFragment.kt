@@ -7,13 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.mygram.databinding.FragmentConfirmPhoneBinding
 import com.example.mygram.ui.activity.AunteficationActivity
 import com.example.mygram.ui.activity.MainActivity
 import com.example.mygram.utils.*
+import com.example.mygram.viewModel.ProfileViewModel
 import com.google.firebase.auth.PhoneAuthProvider
 
 
@@ -23,6 +24,10 @@ class ConfirmPhoneFragment : Fragment() {
     private val binding get() =  _binding!!
     lateinit var id: String
     lateinit var phoneNumber: String
+
+    val viewModel: ProfileViewModel by viewModels {
+        ProfileViewModel.ProfileViewModelFactory()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,26 +61,23 @@ class ConfirmPhoneFragment : Fragment() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
                 val userId = auth.currentUser?.uid.toString()
-                val user = hashMapOf(CHILD_ID to userId,
+                val user = hashMapOf<String, Any>(CHILD_ID to userId,
                     CHILD_PHONE to phoneNumber,
-                    CHILD_USERNAME to userId
+                    CHILD_USERNAME to userId,
+                    CHILD_BIO to ""
                     )
-
-                databaseRefRoot.collection(NODE_USERS)
-                    .document(UID)
-                    .set(user)
-                    .addOnSuccessListener {
-                        Log.d(TEST_TAG, "user add to users")
-                    }
-                    .addOnFailureListener {
-                        Log.w(TEST_TAG, "adding error ${it.message.toString()}")
-                    }
-
+                viewModel.addUser(user)
                 val intent = Intent(activity as AunteficationActivity, MainActivity::class.java)
                 startActivity(intent)
+                (activity as AunteficationActivity).finish()
             } else{
                 Log.d(TEST_TAG, "404")
             }
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

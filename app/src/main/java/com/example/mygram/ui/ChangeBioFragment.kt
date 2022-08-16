@@ -1,29 +1,28 @@
-package com.example.mygram.ui
+package com.example.mygram
 
-import Const.TEST_TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.example.mygram.R
-import com.example.mygram.databinding.FragmentChangeProfileNameBinding
+import com.example.mygram.databinding.FragmentChangeBioBinding
 import com.example.mygram.viewModel.ProfileViewModel
 
-class ChangeProfileNameFragment : Fragment() {
 
-    private var _binding: FragmentChangeProfileNameBinding? = null
-    private val binding get() =  _binding!!
+class ChangeBioFragment : Fragment() {
+
+    //viewBinding
+    private var _binding: FragmentChangeBioBinding? = null
+    private val binding get() = _binding!!
 
     //navigation
     private var _navController: NavController? = null
     private val navController get() = _navController!!
 
+    //viewModel
     private val viewModel: ProfileViewModel by viewModels {
         ProfileViewModel.ProfileViewModelFactory()
     }
@@ -34,25 +33,25 @@ class ChangeProfileNameFragment : Fragment() {
     ): View {
         _navController = findNavController()
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_change_profile_name, container, false)
+        _binding = FragmentChangeBioBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val bio = binding.bio.text.toString()
+
+        binding.apply {
+            confirmBio.setOnClickListener {
+                viewModel.updateBio(bio)
+                navController.navigateUp()
+            }
+            materialToolbarBio.setNavigationOnClickListener {
+                navController.navigateUp()
+            }
+        }
+
         super.onViewCreated(view, savedInstanceState)
-
-        val toolbar = binding.toolbarChangeName
-        toolbar.setNavigationOnClickListener {
-            navController.navigateUp()
-        }
-
-        binding.profileSaveNameButton.setOnClickListener {
-            val name = binding.profileEditName.text.toString()
-            Log.d(TEST_TAG, name)
-            viewModel.updateUserName(name)
-            navController.navigateUp()
-        }
     }
 
     override fun onDestroyView() {
