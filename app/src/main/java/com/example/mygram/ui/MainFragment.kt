@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mygram.R
 import com.example.mygram.databinding.FragmentMainFragmentBinding
+import com.example.mygram.utils.USER
 import com.example.mygram.viewModel.ProfileViewModel
 
 
@@ -52,8 +54,10 @@ class MainFragment : Fragment() {
         //val recyclerView = binding.recyclerView
         //recyclerView.adapter = context?.let { MessagesAdapter(it) }
 
+        val header = navigationView.getHeaderView(0)
         toolbar.setNavigationOnClickListener {
-            viewModel.getUserFromFirebase()
+            header.findViewById<TextView>(R.id.drawer_layout_name).text = USER.name
+            header.findViewById<TextView>(R.id.drawer_layout_phone).text = USER.phone
             drawerLayout.open()
         }
 

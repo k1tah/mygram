@@ -14,12 +14,14 @@
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_baseline_account_circle_24" />
     <TextView
+        android:id="@+id/drawer_layout_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:text="@string/account_name"
         />
     <TextView
+        android:id="@+id/drawer_layout_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
