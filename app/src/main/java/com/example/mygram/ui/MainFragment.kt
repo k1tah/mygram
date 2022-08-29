@@ -16,6 +16,7 @@ import com.example.mygram.R
 import com.example.mygram.databinding.FragmentMainFragmentBinding
 import com.example.mygram.utils.USER
 import com.example.mygram.viewModel.ProfileViewModel
+import com.google.android.material.navigation.NavigationView
 
 
 class MainFragment : Fragment() {
@@ -33,6 +34,9 @@ class MainFragment : Fragment() {
     private val viewModel: ProfileViewModel by viewModels {
         ProfileViewModel.ProfileViewModelFactory()
     }
+    //navView
+    private lateinit var navigationView: NavigationView
+    private lateinit var header: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,18 +50,22 @@ class MainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        navigationView = binding.navigationView
+        header = navigationView.getHeaderView(0
+        )
         viewModel.getUserFromFirebase()
-        val navigationView = binding.navigationView
+        updateUserData()
+
+        //val navigationView = binding.navigationView
         val toolbar = binding.toolbar
         val drawerLayout = binding.drawerLayout
 
         //val recyclerView = binding.recyclerView
         //recyclerView.adapter = context?.let { MessagesAdapter(it) }
 
-        val header = navigationView.getHeaderView(0)
+        //val header = navigationView.getHeaderView(0)
         toolbar.setNavigationOnClickListener {
-            header.findViewById<TextView>(R.id.drawer_layout_name).text = USER.name
-            header.findViewById<TextView>(R.id.drawer_layout_phone).text = USER.phone
+            updateUserData()
             drawerLayout.open()
         }
 
@@ -76,6 +84,11 @@ class MainFragment : Fragment() {
         _navController = null
         _binding = null
         super.onDestroyView()
+    }
+
+    private fun updateUserData(){
+        header.findViewById<TextView>(R.id.drawer_layout_name).text = USER.name
+        header.findViewById<TextView>(R.id.drawer_layout_phone).text = USER.phone
     }
 
 }

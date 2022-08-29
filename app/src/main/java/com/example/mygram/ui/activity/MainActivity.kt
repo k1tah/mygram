@@ -1,15 +1,14 @@
 package com.example.mygram.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.mygram.R
 import com.example.mygram.databinding.ActivityMainBinding
 import com.example.mygram.utils.auth
 import com.example.mygram.utils.initFirebase
-import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,19 +31,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
-        AuthStateListener()
+        authStateListener()
         super.onStart()
     }
 
-    fun AuthStateListener() {
-        if (auth.currentUser == null){
-            val intent = Intent(this@MainActivity, AunteficationActivity::class.java)
+    private fun authStateListener() {
+        if (auth.currentUser == null) {
+            val intent = Intent(this, AunteficationActivity::class.java)
             startActivity(intent)
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        this.finish()
+        super.onBackPressed()
     }
 
 }

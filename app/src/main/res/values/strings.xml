@@ -36,4 +36,7 @@
     <string name="name">Name</string>
     <string name="change_name">Change name</string>
     <string name="enter_your_bio_here">Enter bio here</string>
+    <string name="delete_account">Delete account</string>
+    <string name="sign_out">Sign out</string>
+    <string name="sms_code">sms code</string>
 </resources>

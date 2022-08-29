@@ -1,4 +1,4 @@
-package com.example.mygram.repository.database
+package com.example.mygram.repository
 
 import Const.TEST_TAG
 import android.util.Log
@@ -37,6 +37,8 @@ class ProfileRepository() {
     }
 
     suspend fun addUser(user: HashMap<String, Any>){
+        UID = auth.currentUser?.uid.toString()
+        Log.d(TEST_TAG, "User Id:$UID")
         withContext(Dispatchers.IO) {
             collection.document(UID)
                 .set(user)
