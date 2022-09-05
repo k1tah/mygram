@@ -72,7 +72,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/add_photo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="352dp"
+                android:layout_marginBottom="112dp"
+                android:src="@drawable/ic_baseline_add_a_photo_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
+                android:id="@+id/account_name_profile_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -83,6 +94,7 @@
                 tools:text="@string/account_name" />
 
             <TextView
+                android:id="@+id/account_state_profile_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="44dp"

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "777834076488",
+    "project_id": "mygramm-826a7",
+    "storage_bucket": "mygramm-826a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777834076488:android:0d4689479c89cc32a5fb7d",
+        "android_client_info": {
+          "package_name": "com.example.mygram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777834076488-ndlinlq6vclst2pnuo89gu804lrjf7c2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mygram",
+            "certificate_hash": "42262d3a84c77a17b7999eb1cfe859706930e742"
+          }
+        },
+        {
+          "client_id": "777834076488-el2n2i3ttc779dorg89his9sk66accjv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpz5hColZYc_0VTCY6cIUorKxgpGj7PdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777834076488-el2n2i3ttc779dorg89his9sk66accjv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

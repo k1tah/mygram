@@ -40,6 +40,9 @@ android {
 }
 
 dependencies {
+    //cropper
+
+
     //circleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
@@ -58,6 +61,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:24.2.2'
     implementation 'com.google.firebase:firebase-auth:21.0.7'
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
 
     // Testing Navigation
     androidTestImplementation("androidx.navigation:navigation-testing:2.5.1")
@@ -66,7 +70,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.5.1")
 
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 

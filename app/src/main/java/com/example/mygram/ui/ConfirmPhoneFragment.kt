@@ -61,10 +61,12 @@ class ConfirmPhoneFragment : Fragment() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
                 val userId = auth.currentUser?.uid.toString()
-                val user = hashMapOf<String, Any>(CHILD_ID to userId,
+                val user = hashMapOf<String, Any>(
+                    CHILD_ID to userId,
                     CHILD_PHONE to phoneNumber,
                     CHILD_USERNAME to userId,
-                    CHILD_BIO to ""
+                    CHILD_BIO to "",
+                    CHILD_PHOTO to ""
                     )
                 viewModel.addUser(user)
                 val intent = Intent(activity as AunteficationActivity, MainActivity::class.java)

@@ -1,6 +1,7 @@
 package com.example.mygram.viewModel
 
 import Const.TEST_TAG
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit
 
 class ProfileViewModel(): ViewModel() {
 
-    val profileRepository = ProfileRepository()
+    private val profileRepository = ProfileRepository()
 
     fun updateUserName(name: String){
         viewModelScope.launch {
@@ -38,6 +39,12 @@ class ProfileViewModel(): ViewModel() {
     fun updateBio(bio: String) {
         viewModelScope.launch {
             profileRepository.updateBio(bio)
+        }
+    }
+
+    fun updateUserPhoto(uri: Uri){
+        viewModelScope.launch {
+            profileRepository.updateUserPhoto(uri)
         }
     }
 

@@ -39,4 +39,9 @@
     <string name="delete_account">Delete account</string>
     <string name="sign_out">Sign out</string>
     <string name="sms_code">sms code</string>
+    <string name="photoDialogTitle">Select source</string>
+    <string name="photoDialogTitleCamera">Camera</string>
+    <string name="photoDialogTitleGallery">Gallery</string>
+    <string name="photoDialogTitleClose">Close</string>
+    <string name="photoDialogTitlePickImage">Select image</string>
 </resources>

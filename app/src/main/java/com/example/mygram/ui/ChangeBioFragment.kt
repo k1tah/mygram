@@ -39,10 +39,9 @@ class ChangeBioFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val bio = binding.bio.text.toString()
-
         binding.apply {
             confirmBio.setOnClickListener {
+                val bio = binding.bio.text.toString()
                 viewModel.updateBio(bio)
                 navController.navigateUp()
             }
