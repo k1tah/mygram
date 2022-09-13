@@ -1,6 +1,8 @@
 package com.example.mygram.repository
 
 import Const.TEST_TAG
+import Const.TEST_TAG_AUTH
+import Const.TEST_TAG_DATA
 import android.net.Uri
 import android.util.Log
 import com.example.mygram.utils.*
@@ -44,7 +46,7 @@ class ProfileRepository {
 
     suspend fun addUser(user: HashMap<String, Any>){
         UID = auth.currentUser?.uid.toString()
-        Log.d(TEST_TAG, "User Id:$UID")
+        Log.d(TEST_TAG_AUTH, "User Id:$UID")
         withContext(Dispatchers.IO) {
             collection.document(UID)
                 .set(user)
@@ -62,7 +64,7 @@ class ProfileRepository {
             collection.document(UID)
                 .addSnapshotListener { value, error ->
                     if (error != null){
-                        Log.w(TEST_TAG, "Listen failed.", error)
+                        Log.w(TEST_TAG_DATA, "Listen failed.", error)
                         return@addSnapshotListener
                     }
                     if (value != null && value.exists()){
@@ -70,9 +72,19 @@ class ProfileRepository {
                         USER.phone = value.data?.get(CHILD_PHONE) as String
                         USER.bio = value.data?.get(CHILD_BIO) as String
                         USER.photoUrl = value.data?.get(CHILD_PHOTO) as String
+                        Log.d(TEST_TAG_AUTH, "Current username: ${USER.name}")
                     } else {
-                        Log.d(TEST_TAG, "Current data: null")
+                        Log.d(TEST_TAG_DATA, "Current data: null")
                     }
+                }
+        }
+    }
+
+    suspend fun updateState(appStates: AppStates){
+        withContext(Dispatchers.IO){
+            collection.document(UID).update(CHILD_STATE, appStates.state)
+                .addOnSuccessListener {
+                    USER.state = appStates.state
                 }
         }
     }
@@ -84,23 +96,24 @@ class ProfileRepository {
                     if (it.isSuccessful){
                         path.downloadUrl.addOnCompleteListener { downloadTask ->
                             if (downloadTask.isSuccessful){
-                                val photoUrl = it.result.toString()
+                                val photoUrl = downloadTask.result.toString()
+                                Log.d(TEST_TAG_DATA, "Current url: $photoUrl")
                                 collection.document(UID).update(CHILD_PHOTO, photoUrl)
                                     .addOnCompleteListener { taskPhotoAddToDatabase ->
                                         if (taskPhotoAddToDatabase.isSuccessful){
-                                            Log.d(TEST_TAG, "image add sus to database")
+                                            Log.d(TEST_TAG_DATA, "image add sus to database")
                                         }
                                     }
                                     .addOnFailureListener { addPhotoException ->
-                                        Log.d(TEST_TAG, "${addPhotoException.message}")
+                                        Log.d(TEST_TAG_DATA, "${addPhotoException.message}")
                                     }
                             }
                         }
-                        Log.d(TEST_TAG, "image add sus")
+                        Log.d(TEST_TAG_DATA, "image add sus")
                     }
                 }
                 .addOnFailureListener {
-                    Log.d(TEST_TAG, "image add failed ${it.message}")
+                    Log.d(TEST_TAG_DATA, "image add failed ${it.message}")
                 }
         }
     }

@@ -1,6 +1,6 @@
 package com.example.mygram.ui
 
-import Const.TEST_TAG
+import Const.TEST_TAG_AUTH
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +16,7 @@ import com.example.mygram.ui.activity.MainActivity
 import com.example.mygram.utils.*
 import com.example.mygram.viewModel.ProfileViewModel
 import com.google.firebase.auth.PhoneAuthProvider
+import kotlinx.coroutines.runBlocking
 
 
 class ConfirmPhoneFragment : Fragment() {
@@ -44,8 +45,8 @@ class ConfirmPhoneFragment : Fragment() {
         id = args.id
         phoneNumber = args.phoneNumber
 
-        val text = binding.inputCode.text.toString()
-        if (text.length == 6){
+        val text = binding.inputCode
+        if (text.length() == 6){
             enterCode()
         }
         binding.confirmButton.setOnClickListener {
@@ -60,20 +61,23 @@ class ConfirmPhoneFragment : Fragment() {
         val credential = PhoneAuthProvider.getCredential(id, code)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
+                runBlocking { viewModel.getUserFromFirebase() }
                 val userId = auth.currentUser?.uid.toString()
+                Log.d(TEST_TAG_AUTH, "username: ${USER.name}")
                 val user = hashMapOf<String, Any>(
                     CHILD_ID to userId,
                     CHILD_PHONE to phoneNumber,
-                    CHILD_USERNAME to userId,
-                    CHILD_BIO to "",
-                    CHILD_PHOTO to ""
+                    CHILD_USERNAME to USER.name.ifEmpty { userId },
+                    CHILD_BIO to USER.bio.ifEmpty { "" },
+                    CHILD_PHOTO to USER.photoUrl.ifEmpty { "" },
+                    CHILD_STATE to USER.state.ifEmpty { AppStates.OFFLINE }
                     )
                 viewModel.addUser(user)
                 val intent = Intent(activity as AunteficationActivity, MainActivity::class.java)
                 startActivity(intent)
                 (activity as AunteficationActivity).finish()
             } else{
-                Log.d(TEST_TAG, "404")
+                Log.d(TEST_TAG_AUTH, "404")
             }
         }
     }

@@ -1,6 +1,6 @@
 package com.example.mygram.ui
 
-import Const.TEST_TAG
+import Const.TEST_TAG_AUTH
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +15,6 @@ import com.example.mygram.databinding.FragmentAunteficationBinding
 import com.example.mygram.ui.activity.AunteficationActivity
 import com.example.mygram.ui.activity.MainActivity
 import com.example.mygram.utils.auth
-import com.example.mygram.utils.initFirebase
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
@@ -29,10 +28,6 @@ class AunteficationFragment : Fragment() {
 
     private lateinit var phoneNumber: String
     private lateinit var callback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-
-    init {
-        initFirebase()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +43,7 @@ class AunteficationFragment : Fragment() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 auth.signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful){
-                        Log.d(TEST_TAG, "sucs")
+                        Log.d(TEST_TAG_AUTH, "sucs")
                         val intent = Intent(activity as AunteficationActivity, MainActivity::class.java)
                         startActivity(intent)
                         (activity as AunteficationActivity).finish()
@@ -57,7 +52,7 @@ class AunteficationFragment : Fragment() {
             }
 
             override fun onVerificationFailed(exception: FirebaseException) {
-                Log.d(TEST_TAG, "pizdec ${exception.message}")
+                Log.d(TEST_TAG_AUTH, "pizdec ${exception.message}")
             }
 
             override fun onCodeSent(id: String, token: PhoneAuthProvider.ForceResendingToken) {

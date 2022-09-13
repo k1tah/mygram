@@ -25,6 +25,7 @@ const val CHILD_PHONE = "phone"
 const val CHILD_USERNAME = "name"
 const val CHILD_BIO = "bio"
 const val CHILD_PHOTO = "photoUrl"
+const val CHILD_STATE = "state"
 
 
 fun initFirebase(){

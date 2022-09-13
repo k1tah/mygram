@@ -1,6 +1,6 @@
 package com.example.mygram.viewModel
 
-import Const.TEST_TAG
+import Const.TEST_TAG_AUTH
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.mygram.repository.ProfileRepository
 import com.example.mygram.ui.activity.MainActivity
+import com.example.mygram.utils.AppStates
 import com.example.mygram.utils.USER
 import com.example.mygram.utils.auth
 import com.google.firebase.auth.PhoneAuthProvider
@@ -64,14 +65,20 @@ class ProfileViewModel(): ViewModel() {
         val user = auth.currentUser!!
         user.reauthenticate(credential).addOnSuccessListener {
             user.delete().addOnSuccessListener {
-                Log.d(TEST_TAG, "user deleted")
+                Log.d(TEST_TAG_AUTH, "user deleted")
             }
                 .addOnFailureListener {
-                    Log.d(TEST_TAG, "${it.message}")
+                    Log.d(TEST_TAG_AUTH, "${it.message}")
                 }
         }
         .addOnFailureListener {
-               Log.d(TEST_TAG, "${it.message}")
+               Log.d(TEST_TAG_AUTH, "${it.message}")
+        }
+    }
+
+    fun updateState(appStates: AppStates){
+        viewModelScope.launch {
+            profileRepository.updateState(appStates)
         }
     }
 

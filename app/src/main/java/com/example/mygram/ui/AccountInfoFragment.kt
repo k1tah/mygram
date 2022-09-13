@@ -1,6 +1,7 @@
 package com.example.mygram.ui
 
 import Const.TEST_TAG
+import Const.TEST_TAG_DATA
 import android.Manifest
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -14,7 +15,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
@@ -29,6 +29,7 @@ import com.example.mygram.ui.activity.AunteficationActivity
 import com.example.mygram.ui.activity.MainActivity
 import com.example.mygram.utils.USER
 import com.example.mygram.utils.auth
+import com.example.mygram.utils.downloadAndSetImage
 import com.example.mygram.viewModel.ProfileViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.FirebaseException
@@ -39,7 +40,6 @@ import java.io.File
 
 class AccountInfoFragment : Fragment() {
     //photo
-    private lateinit var imageView: ImageView
     private lateinit var file: File
     private lateinit var uri: Uri
     private lateinit var cameraIntent: Intent
@@ -55,7 +55,7 @@ class AccountInfoFragment : Fragment() {
     private var _navController: NavController? = null
     private val navController get() = _navController!!
     //viewModel
-    private val viewModel: ProfileViewModel by viewModels {
+    private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModel.ProfileViewModelFactory()
     }
 
@@ -76,7 +76,7 @@ class AccountInfoFragment : Fragment() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 auth.signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        Log.d(TEST_TAG,"sucs delete")
+                        Log.d(TEST_TAG,"sus delete")
                     }
                 }
             }
@@ -88,6 +88,23 @@ class AccountInfoFragment : Fragment() {
         }
         super.onStart()
     }
+
+    override fun onResume() {
+        initProfileDataFields()
+        super.onResume()
+    }
+
+    private fun initProfileDataFields() {
+        //text fields
+        binding.apply {
+            accountDescriptionProfile.text = USER.bio
+            accountNumberProfile.text = USER.phone
+            accountDescriptionProfile.text = USER.bio
+            accountNameProfile.text = USER.name
+            accountNameProfileTop.text = USER.name
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.apply {
             //set name
@@ -95,13 +112,14 @@ class AccountInfoFragment : Fragment() {
                 navController.navigate(R.id.changeProfileNameFragment)
             }
             //set bio
+            accountDescriptionProfile.text = USER.bio
             accountDescriptionProfileContainer.setOnClickListener {
                 navController.navigate(R.id.changeBioFragment)
             }
             //sign out
             signOutButton.setOnClickListener {
                 Log.d(TEST_TAG, "sign out")
-                viewModel.signOut()
+                profileViewModel.signOut()
                 val intent = Intent(activity, AunteficationActivity::class.java)
                 startActivity(intent)
             }
@@ -111,18 +129,18 @@ class AccountInfoFragment : Fragment() {
                 confirmCodeLayout.visibility = View.VISIBLE
             }
             confirmCodeButton.setOnClickListener {
-                viewModel.deleteAccount(code, activity as MainActivity, callback)
+                profileViewModel.deleteAccount(code, activity as MainActivity, callback)
             }
             //set profile photo
-            imageView = accountImageProfile
+            Log.d(TEST_TAG, USER.photoUrl)
+            accountImageProfile.downloadAndSetImage(USER.photoUrl)
+            accountImageProfile.setOnClickListener {
+                accountImageProfile.downloadAndSetImage(USER.photoUrl)
+                Log.d(TEST_TAG_DATA, "image installed")
+            }
             addPhoto.setOnClickListener {
                 createDialogWindow()
             }
-            //text fields
-            accountNumberProfile.text = USER.phone
-            accountDescriptionProfile.text = USER.bio
-            accountNameProfile.text = USER.name
-            accountNameProfileTop.text = USER.name
         }
 
         super.onViewCreated(view, savedInstanceState)
@@ -226,7 +244,7 @@ class AccountInfoFragment : Fragment() {
             }
         } else if (requestCode == 3) {
             if (data != null){
-                viewModel.updateUserPhoto(uri)
+                profileViewModel.updateUserPhoto(uri)
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
