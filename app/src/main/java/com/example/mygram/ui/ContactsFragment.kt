@@ -1,13 +1,12 @@
 package com.example.mygram.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import com.example.mygram.R
 import com.example.mygram.databinding.FragmentContactsBinding
 
@@ -16,6 +15,9 @@ class ContactsFragment : Fragment() {
     //viewBinding
     private var _binding: FragmentContactsBinding? = null
     private val binding get() = _binding!!
+    //navController
+    private var _navController: NavController? = null
+    private val navController get() = _navController
     //view Model
 
 

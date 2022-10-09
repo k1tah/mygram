@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mygram.R
 import com.example.mygram.databinding.FragmentMainFragmentBinding
-import com.example.mygram.utils.USER
+import com.example.mygram.utils.User.USER
 import com.example.mygram.viewModel.ProfileViewModel
 import com.google.android.material.navigation.NavigationView
 
@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
 
     //viewModel
     //private val messageViewModel: MessagesViewModel by viewModels()
-    private val viewModel: ProfileViewModel by viewModels {
+    private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModel.ProfileViewModelFactory()
     }
     //navView
@@ -49,12 +49,16 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        updateUserData()
+        super.onStart()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navigationView = binding.navigationView
         header = navigationView.getHeaderView(0
         )
-        viewModel.getUserFromFirebase()
-        updateUserData()
+
+        profileViewModel.getUserFromFirebase()
 
         //val navigationView = binding.navigationView
         val toolbar = binding.toolbar

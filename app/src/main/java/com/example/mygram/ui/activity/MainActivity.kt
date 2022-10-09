@@ -2,6 +2,7 @@ package com.example.mygram.ui.activity
 
 import Const.TEST_TAG
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -11,15 +12,14 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.mygram.APP_ACTIVITY
 import com.example.mygram.R
 import com.example.mygram.databinding.ActivityMainBinding
-import com.example.mygram.utils.AppStates
-import com.example.mygram.utils.auth
-import com.example.mygram.utils.initFirebase
+import com.example.mygram.utils.*
 import com.example.mygram.viewModel.ProfileViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+
     private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModel.ProfileViewModelFactory()
     }
@@ -37,11 +37,12 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-
+        authStateListener()
+        checkPermission(READ_CONTACTS)
+        initContacts()
     }
 
     override fun onStart() {
-        authStateListener()
         profileViewModel.updateState(AppStates.ONLINE)
         super.onStart()
     }
@@ -62,9 +63,30 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    override fun onBackPressed() {
-        this.finish()
-        super.onBackPressed()
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode){
+            REQUEST_CODE_READ_CONTACTS -> {
+                if ((grantResults.isNotEmpty() &&
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)){
+                    initContacts()
+                } else{
+                    showToast("Permission is not granted")
+                }
+                return
+            }
+            else -> {
+                return
+            }
+        }
+    }
+
+    private fun initContacts() {
+        initPhoneContacts()?.let { profileViewModel.updateContacts(it) }
     }
 
 }

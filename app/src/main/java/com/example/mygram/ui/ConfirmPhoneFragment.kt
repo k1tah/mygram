@@ -14,6 +14,7 @@ import com.example.mygram.databinding.FragmentConfirmPhoneBinding
 import com.example.mygram.ui.activity.AunteficationActivity
 import com.example.mygram.ui.activity.MainActivity
 import com.example.mygram.utils.*
+import com.example.mygram.utils.User.USER
 import com.example.mygram.viewModel.ProfileViewModel
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.coroutines.runBlocking
@@ -62,8 +63,8 @@ class ConfirmPhoneFragment : Fragment() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
                 runBlocking { viewModel.getUserFromFirebase() }
-                val userId = auth.currentUser?.uid.toString()
                 Log.d(TEST_TAG_AUTH, "username: ${USER.name}")
+                val userId = auth.currentUser?.uid.toString()
                 val user = hashMapOf<String, Any>(
                     CHILD_ID to userId,
                     CHILD_PHONE to phoneNumber,
@@ -72,7 +73,10 @@ class ConfirmPhoneFragment : Fragment() {
                     CHILD_PHOTO to USER.photoUrl.ifEmpty { "" },
                     CHILD_STATE to USER.state.ifEmpty { AppStates.OFFLINE }
                     )
-                viewModel.addUser(user)
+                val userPhone = hashMapOf(
+                    userId to phoneNumber
+                )
+                viewModel.addUser(user, userPhone)
                 val intent = Intent(activity as AunteficationActivity, MainActivity::class.java)
                 startActivity(intent)
                 (activity as AunteficationActivity).finish()

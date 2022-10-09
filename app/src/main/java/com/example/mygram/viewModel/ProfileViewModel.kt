@@ -3,24 +3,28 @@ package com.example.mygram.viewModel
 import Const.TEST_TAG_AUTH
 import android.net.Uri
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.mygram.domain.Contact
+import com.example.mygram.domain.User
 import com.example.mygram.repository.ProfileRepository
 import com.example.mygram.ui.activity.MainActivity
 import com.example.mygram.utils.AppStates
-import com.example.mygram.utils.USER
+import com.example.mygram.utils.User.USER
 import com.example.mygram.utils.auth
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
-class ProfileViewModel(): ViewModel() {
+class ProfileViewModel: ViewModel() {
+
+    private val _user = MutableLiveData<User>()
+    val user: LiveData<User> = _user
 
     private val profileRepository = ProfileRepository()
 
     fun updateUserName(name: String){
         viewModelScope.launch {
+            _user.value?.name = name
             profileRepository.updateUserName(name)
         }
     }
@@ -28,18 +32,20 @@ class ProfileViewModel(): ViewModel() {
     fun getUserFromFirebase(){
         viewModelScope.launch {
             profileRepository.getUserFromFirebase()
+            _user.value = USER
         }
     }
 
-    fun addUser(user: HashMap<String, Any>){
+    fun addUser(user: HashMap<String, Any>, userPhone: HashMap<String, String>){
         viewModelScope.launch {
-            profileRepository.addUser(user)
+            profileRepository.addUser(user, userPhone)
         }
     }
 
     fun updateBio(bio: String) {
         viewModelScope.launch {
             profileRepository.updateBio(bio)
+            _user.value?.bio = bio
         }
     }
 
@@ -50,6 +56,12 @@ class ProfileViewModel(): ViewModel() {
     }
 
     fun signOut(){
+        USER.apply {
+            name = ""
+            phone = ""
+            bio = ""
+            photoUrl = ""
+        }
         auth.signOut()
     }
 
@@ -79,6 +91,12 @@ class ProfileViewModel(): ViewModel() {
     fun updateState(appStates: AppStates){
         viewModelScope.launch {
             profileRepository.updateState(appStates)
+        }
+    }
+
+    fun updateContacts(contacts: ArrayList<Contact>){
+        viewModelScope.launch {
+            profileRepository.updateContacts(contacts)
         }
     }
 

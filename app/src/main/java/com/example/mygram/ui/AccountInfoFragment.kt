@@ -2,7 +2,6 @@ package com.example.mygram.ui
 
 import Const.TEST_TAG
 import Const.TEST_TAG_DATA
-import android.Manifest
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -15,20 +14,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.example.mygram.APP_ACTIVITY
 import com.example.mygram.BuildConfig
 import com.example.mygram.R
 import com.example.mygram.databinding.FragmentAccountInfoBinding
 import com.example.mygram.ui.activity.AunteficationActivity
 import com.example.mygram.ui.activity.MainActivity
-import com.example.mygram.utils.USER
+import com.example.mygram.utils.CAMERA
+import com.example.mygram.utils.User.USER
 import com.example.mygram.utils.auth
+import com.example.mygram.utils.checkPermission
 import com.example.mygram.utils.downloadAndSetImage
 import com.example.mygram.viewModel.ProfileViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -63,7 +65,6 @@ class AccountInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        enableRuntimePermission()
         //navController
         _navController = findNavController()
         // Inflate the layout for this fragment
@@ -89,30 +90,24 @@ class AccountInfoFragment : Fragment() {
         super.onStart()
     }
 
-    override fun onResume() {
-        initProfileDataFields()
-        super.onResume()
-    }
-
-    private fun initProfileDataFields() {
-        //text fields
-        binding.apply {
-            accountDescriptionProfile.text = USER.bio
-            accountNumberProfile.text = USER.phone
-            accountDescriptionProfile.text = USER.bio
-            accountNameProfile.text = USER.name
-            accountNameProfileTop.text = USER.name
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        profileViewModel.getUserFromFirebase()
+        val owner = viewLifecycleOwner
+        profileViewModel.user.observe(owner){
+            binding.apply {
+                accountNameProfile.text = it.name
+                accountNameProfileTop.text = it.name
+                accountDescriptionProfile.text = it.bio
+                accountNumberProfile.text = it.phone
+            }
+        }
+
         binding.apply {
             //set name
             nameContainerProfile.setOnClickListener {
                 navController.navigate(R.id.changeProfileNameFragment)
             }
             //set bio
-            accountDescriptionProfile.text = USER.bio
             accountDescriptionProfileContainer.setOnClickListener {
                 navController.navigate(R.id.changeBioFragment)
             }
@@ -142,7 +137,6 @@ class AccountInfoFragment : Fragment() {
                 createDialogWindow()
             }
         }
-
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -151,6 +145,7 @@ class AccountInfoFragment : Fragment() {
         dialog.apply {
             setTitle(R.string.photoDialogTitle)
             setNeutralButton(R.string.photoDialogTitleCamera){ dialog, _ ->
+                checkPermission(CAMERA)
                 openCamera()
                 dialog.dismiss()
             }
@@ -188,17 +183,6 @@ class AccountInfoFragment : Fragment() {
         startActivityForResult(cameraIntent, 1)
     }
 
-    private fun enableRuntimePermission(){
-        activity?.let {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(activity as MainActivity, Manifest.permission.CAMERA)){
-                Log.d(TEST_TAG, "ok permission")
-            } else{
-                ActivityCompat.requestPermissions(activity as MainActivity,
-                arrayOf(Manifest.permission.CAMERA), RequestPermissionCode)
-            }
-        }
-    }
-
     private fun cropImages(){
         try {
             cropIntent = Intent("com.android.camera.action.CROP")
@@ -221,14 +205,10 @@ class AccountInfoFragment : Fragment() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when (requestCode){
-            RequestPermissionCode -> if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Log.d(TEST_TAG, "permission granted")
-            } else {
-                Log.d(TEST_TAG, "permission not granted")
-            }
-        }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (ContextCompat.checkSelfPermission(APP_ACTIVITY, CAMERA) != PackageManager.PERMISSION_GRANTED){
+            checkPermission(CAMERA)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -248,8 +228,5 @@ class AccountInfoFragment : Fragment() {
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
-    }
-    companion object{
-        const val RequestPermissionCode = 111
     }
 }

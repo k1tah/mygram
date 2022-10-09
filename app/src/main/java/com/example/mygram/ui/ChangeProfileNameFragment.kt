@@ -1,8 +1,6 @@
 package com.example.mygram.ui
 
-import Const.TEST_TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +47,6 @@ class ChangeProfileNameFragment : Fragment() {
 
         binding.profileSaveNameButton.setOnClickListener {
             val name = binding.profileEditName.text.toString()
-            Log.d(TEST_TAG, name)
             viewModel.updateUserName(name)
             navController.navigateUp()
         }
