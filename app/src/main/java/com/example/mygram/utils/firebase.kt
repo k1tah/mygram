@@ -69,4 +69,5 @@ fun initPhoneContacts(): ArrayList<Contact>? {
 
 object User {
     val USER = User()
+    val LISTCONTACTS = mutableListOf<Contact>()
 }

@@ -7,6 +7,7 @@ import android.net.Uri
 import android.util.Log
 import com.example.mygram.domain.Contact
 import com.example.mygram.utils.*
+import com.example.mygram.utils.User.LISTCONTACTS
 import com.example.mygram.utils.User.USER
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -71,8 +72,22 @@ class ProfileRepository {
                 }
         }
     }
+    suspend fun getUser(){
+        withContext(Dispatchers.IO){
+            collectionUsers.document(UID).get()
+                .addOnSuccessListener {
+                    USER.name = it.data?.get(CHILD_USERNAME) as String
+                    USER.phone = it.data?.get(CHILD_PHONE) as String
+                    USER.photoUrl = it.data?.get(CHILD_PHOTO) as String
+                    USER.bio = it.data?.get(CHILD_BIO) as String
+                }
+                .addOnFailureListener { exception ->
+                    Log.w(TEST_TAG, "get user error: ${exception.message}")
+                }
+        }
+    }
 
-    suspend fun getUserFromFirebase(){
+    suspend fun observeUser(){
         withContext(Dispatchers.IO){
             collectionUsers.document(UID)
                 .addSnapshotListener { value, error ->
@@ -85,7 +100,6 @@ class ProfileRepository {
                         USER.phone = value.data?.get(CHILD_PHONE) as String
                         USER.bio = value.data?.get(CHILD_BIO) as String
                         USER.photoUrl = value.data?.get(CHILD_PHOTO) as String
-                        Log.d(TEST_TAG_AUTH, "Current username: ${USER.name}")
                     } else {
                         Log.d(TEST_TAG_DATA, "Current data: null")
                     }
@@ -131,6 +145,41 @@ class ProfileRepository {
         }
     }
 
+    suspend fun observeContacts(){
+        withContext(Dispatchers.IO){
+            collectionUserContacts.document(UID).addSnapshotListener { value, error ->
+                if (error != null){
+                    Log.w(TEST_TAG, "observe contacts failed.", error)
+                    return@addSnapshotListener
+                }
+                if (value != null){
+                    value.data?.forEach {
+                        val contact = Contact(uid = it.value.toString())
+                        if (!LISTCONTACTS.contains(contact)){
+                            LISTCONTACTS.add(contact)
+                        }
+                    }
+                } else {
+                    Log.d(TEST_TAG_DATA, "Current phones data: null")
+                }
+            }
+        }
+    }
+
+    suspend fun getUserContacts(){
+        withContext(Dispatchers.IO){
+            collectionUserContacts.document(UID).get()
+                .addOnSuccessListener {
+                    it.data?.forEach { userContact ->
+                        val contact = Contact(uid = userContact.value.toString())
+                        if (!LISTCONTACTS.contains(contact)){
+                            LISTCONTACTS.add(contact)
+                        }
+                    }
+                }
+        }
+    }
+
     suspend fun updateContacts(contacts: ArrayList<Contact>){
         withContext(Dispatchers.IO){
             collectionPhones.addSnapshotListener{ value, error ->
@@ -144,7 +193,6 @@ class ProfileRepository {
                         documentSnapshot.data?.forEach { mapPhones ->
                             contacts.forEach { contact ->
                                 if (mapPhones.value == contact.phone){
-                                    Log.d(TEST_TAG_DATA, "contact ${mapPhones.key} to ${contact.phone}")
                                     mapContacts.put(contact.phone, mapPhones.key)
                                 }
                             }

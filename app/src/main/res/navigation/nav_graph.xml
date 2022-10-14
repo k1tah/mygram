@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_accountInfoFragment"
             app:destination="@id/accountInfoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountInfoFragment"
@@ -58,5 +61,13 @@
             app:destination="@id/accountInfoFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.mygram.ui.ContactsFragment"
+        android:label="ContactsFragment" >
+        <action
+            android:id="@+id/action_contactsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

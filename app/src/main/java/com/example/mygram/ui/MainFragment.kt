@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -17,6 +17,7 @@ import com.example.mygram.databinding.FragmentMainFragmentBinding
 import com.example.mygram.utils.User.USER
 import com.example.mygram.viewModel.ProfileViewModel
 import com.google.android.material.navigation.NavigationView
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class MainFragment : Fragment() {
@@ -31,9 +32,8 @@ class MainFragment : Fragment() {
 
     //viewModel
     //private val messageViewModel: MessagesViewModel by viewModels()
-    private val profileViewModel: ProfileViewModel by viewModels {
-        ProfileViewModel.ProfileViewModelFactory()
-    }
+    private val profileViewModel: ProfileViewModel by activityViewModels()
+
     //navView
     private lateinit var navigationView: NavigationView
     private lateinit var header: View
@@ -58,26 +58,27 @@ class MainFragment : Fragment() {
         header = navigationView.getHeaderView(0
         )
 
-        profileViewModel.getUserFromFirebase()
-
-        //val navigationView = binding.navigationView
+        val accountImage = header.findViewById<CircleImageView>(R.id.account_image)
         val toolbar = binding.toolbar
         val drawerLayout = binding.drawerLayout
 
         //val recyclerView = binding.recyclerView
         //recyclerView.adapter = context?.let { MessagesAdapter(it) }
 
-        //val header = navigationView.getHeaderView(0)
         toolbar.setNavigationOnClickListener {
             updateUserData()
             drawerLayout.open()
         }
 
-        navigationView.setupWithNavController(findNavController())
+        accountImage.setOnClickListener {
+            navController.navigate(R.id.accountInfoFragment)
+        }
+
+        navigationView.setupWithNavController(navController)
         navigationView.setNavigationItemSelectedListener{
            when(it.itemId){
                R.id.settings -> navController.navigate(R.id.accountInfoFragment)
-               R.id.account_image -> navController.navigate(R.id.accountInfoFragment)
+               R.id.contacts -> navController.navigate(R.id.contactsFragment)
            }
            true
         }

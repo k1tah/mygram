@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.example.mygram.databinding.FragmentConfirmPhoneBinding
 import com.example.mygram.ui.activity.AunteficationActivity
@@ -27,9 +27,7 @@ class ConfirmPhoneFragment : Fragment() {
     lateinit var id: String
     lateinit var phoneNumber: String
 
-    val viewModel: ProfileViewModel by viewModels {
-        ProfileViewModel.ProfileViewModelFactory()
-    }
+    val viewModel: ProfileViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,7 +60,7 @@ class ConfirmPhoneFragment : Fragment() {
         val credential = PhoneAuthProvider.getCredential(id, code)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
-                runBlocking { viewModel.getUserFromFirebase() }
+                runBlocking { viewModel.getUser() }
                 Log.d(TEST_TAG_AUTH, "username: ${USER.name}")
                 val userId = auth.currentUser?.uid.toString()
                 val user = hashMapOf<String, Any>(

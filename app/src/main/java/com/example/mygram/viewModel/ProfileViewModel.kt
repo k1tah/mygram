@@ -9,6 +9,7 @@ import com.example.mygram.domain.User
 import com.example.mygram.repository.ProfileRepository
 import com.example.mygram.ui.activity.MainActivity
 import com.example.mygram.utils.AppStates
+import com.example.mygram.utils.User.LISTCONTACTS
 import com.example.mygram.utils.User.USER
 import com.example.mygram.utils.auth
 import com.google.firebase.auth.PhoneAuthProvider
@@ -18,7 +19,10 @@ import java.util.concurrent.TimeUnit
 class ProfileViewModel: ViewModel() {
 
     private val _user = MutableLiveData<User>()
+    private val _listContacts = MutableLiveData<MutableList<Contact>>()
+
     val user: LiveData<User> = _user
+    val listContacts: LiveData<MutableList<Contact>> = _listContacts
 
     private val profileRepository = ProfileRepository()
 
@@ -29,9 +33,25 @@ class ProfileViewModel: ViewModel() {
         }
     }
 
-    fun getUserFromFirebase(){
+
+
+    fun observeContacts(){
         viewModelScope.launch {
-            profileRepository.getUserFromFirebase()
+            profileRepository.observeContacts()
+            _listContacts.value = LISTCONTACTS
+        }
+    }
+
+    fun observeUser(){
+        viewModelScope.launch {
+            profileRepository.observeUser()
+            _user.value = USER
+        }
+    }
+
+    fun getUser(){
+        viewModelScope.launch {
+            profileRepository.getUser()
             _user.value = USER
         }
     }
@@ -56,13 +76,14 @@ class ProfileViewModel: ViewModel() {
     }
 
     fun signOut(){
+        auth.signOut()
         USER.apply {
             name = ""
             phone = ""
             bio = ""
             photoUrl = ""
         }
-        auth.signOut()
+        Log.d(TEST_TAG_AUTH, USER.name)
     }
 
     fun deleteAccount(code: String, activity: MainActivity, callback: PhoneAuthProvider.OnVerificationStateChangedCallbacks){
@@ -97,6 +118,13 @@ class ProfileViewModel: ViewModel() {
     fun updateContacts(contacts: ArrayList<Contact>){
         viewModelScope.launch {
             profileRepository.updateContacts(contacts)
+        }
+    }
+
+    fun getUserContacts() {
+        viewModelScope.launch {
+            profileRepository.getUserContacts()
+            _listContacts.value = LISTCONTACTS
         }
     }
 

@@ -2,11 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="?attr/colorSecondary"
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/contact_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
         android:src="@drawable/ic_baseline_account_circle_24"
         android:layout_width="@dimen/accountImage_width"
         android:layout_height="@dimen/accountImage_height"/>
+    <TextView
+        android:id="@+id/contact_name"
+        app:layout_constraintStart_toEndOf="@+id/contact_image"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/contactText_marginStart"
+        tools:text="@string/account_name"
+        />
+    <TextView
+        android:id="@+id/contact_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/contact_image"
+        app:layout_constraintTop_toBottomOf="@id/contact_name"
+        android:layout_marginStart="@dimen/contactText_marginStart"
+        tools:text="@string/account_state"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.mygram.APP_ACTIVITY
@@ -57,9 +57,7 @@ class AccountInfoFragment : Fragment() {
     private var _navController: NavController? = null
     private val navController get() = _navController!!
     //viewModel
-    private val profileViewModel: ProfileViewModel by viewModels {
-        ProfileViewModel.ProfileViewModelFactory()
-    }
+    private val profileViewModel: ProfileViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -91,7 +89,7 @@ class AccountInfoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        profileViewModel.getUserFromFirebase()
+        profileViewModel.getUser()
         val owner = viewLifecycleOwner
         profileViewModel.user.observe(owner){
             binding.apply {

@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
+        profileViewModel.observeUser()
+        profileViewModel.observeContacts()
         profileViewModel.updateState(AppStates.ONLINE)
         super.onStart()
     }

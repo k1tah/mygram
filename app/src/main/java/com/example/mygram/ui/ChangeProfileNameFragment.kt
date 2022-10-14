@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.mygram.R
@@ -22,9 +22,7 @@ class ChangeProfileNameFragment : Fragment() {
     private var _navController: NavController? = null
     private val navController get() = _navController!!
 
-    private val viewModel: ProfileViewModel by viewModels {
-        ProfileViewModel.ProfileViewModelFactory()
-    }
+    private val viewModel: ProfileViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
