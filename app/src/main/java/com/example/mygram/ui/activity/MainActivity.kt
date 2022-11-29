@@ -13,6 +13,7 @@ import com.example.mygram.APP_ACTIVITY
 import com.example.mygram.R
 import com.example.mygram.databinding.ActivityMainBinding
 import com.example.mygram.utils.*
+import com.example.mygram.viewModel.MessagesViewModel
 import com.example.mygram.viewModel.ProfileViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +24,11 @@ class MainActivity : AppCompatActivity() {
     private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModel.ProfileViewModelFactory()
     }
+
+    private val messagesViewModel: MessagesViewModel by viewModels {
+        MessagesViewModel.MessagesViewModelFactory()
+    }
+
     init {
         APP_ACTIVITY = this
         initFirebase()
@@ -38,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         authStateListener()
-        checkPermission(READ_CONTACTS)
+        checkPermission(READ_CONTACTS, REQUEST_CODE_READ_CONTACTS)
         initContacts()
     }
 
@@ -72,11 +78,23 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode){
+            REQUEST_CODE_CAMERA -> {
+                if ((grantResults.isNotEmpty() &&
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                ) {
+                    return
+                }
+                else {
+                    showToast("Permission is not granted")
+                }
+                return
+            }
             REQUEST_CODE_READ_CONTACTS -> {
                 if ((grantResults.isNotEmpty() &&
                             grantResults[0] == PackageManager.PERMISSION_GRANTED)){
                     initContacts()
-                } else{
+                }
+                else {
                     showToast("Permission is not granted")
                 }
                 return

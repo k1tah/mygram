@@ -13,6 +13,18 @@
         android:layout_height="match_parent"
         tools:context=".ui.AccountInfoFragment">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="@string/settings"
+            app:titleTextColor="@color/white_lite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/confirm_code_layout"
             android:layout_width="match_parent"
@@ -51,12 +63,15 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="180dp"
+            android:layout_marginTop="56dp"
             android:background="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -66,15 +81,27 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="48dp"
+                tools:src="@drawable/ic_baseline_account_circle_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/add_photo_background"
+                android:layout_width="64dp"
+                android:layout_height="74dp"
+                android:layout_marginStart="340dp"
+                android:layout_marginBottom="4dp"
+                android:src="@color/white_lite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <ImageView
                 android:id="@+id/add_photo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="352dp"
-                android:layout_marginBottom="112dp"
+                android:layout_width="68dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="337dp"
+                android:layout_marginBottom="14dp"
+                android:padding="8dp"
                 android:src="@drawable/ic_baseline_add_a_photo_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -101,7 +128,6 @@
                 app:layout_constraintStart_toEndOf="@+id/account_image_profile"
                 tools:text="@string/account_state" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <TextView
             android:id="@+id/account_title_profile"

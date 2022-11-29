@@ -69,5 +69,21 @@
         <action
             android:id="@+id/action_contactsFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_singleChatFragment"
+            app:destination="@id/singleChatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleChatFragment"
+        android:name="com.example.mygram.ui.SingleChatFragment"
+        android:label="SingleChatFragment" >
+        <action
+            android:id="@+id/action_singleChatFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

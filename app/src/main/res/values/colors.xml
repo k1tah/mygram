@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="btn_rose">#DFBBBB</color>
     <color name="red">#D60943</color>
     <color name="gray">#283436</color>
     <color name="header">#368791</color>

@@ -1,25 +1,44 @@
 package com.example.mygram.ui.adapter
 
+import Const.TEST_TAG_DATA
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mygram.databinding.ItemContactBinding
 import com.example.mygram.domain.Contact
-import com.example.mygram.utils.downloadAndSetImage
+import com.example.mygram.ui.ContactsFragmentDirections
+import com.example.mygram.utils.*
 
 
 class ContactsAdapter: ListAdapter<Contact, ContactsAdapter.ContactHolder>(DiffCallback)
     {
 
     class ContactHolder(private var binding: ItemContactBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(contact: Contact) {
-            binding.apply{
-                contactName.text = contact.uid
-                contactState.text = contact.state
-                contactImage.downloadAndSetImage(contact.photoUrl)
-            }
+
+        lateinit var name: String
+        lateinit var state: String
+        lateinit var photo: String
+
+        fun bind(contactUid: String) {
+            val collectionUsers = databaseRefRoot.collection(NODE_USERS)
+            collectionUsers.document(contactUid).get()
+                .addOnSuccessListener {
+                    name = it.data?.get(CHILD_USERNAME) as String
+                    state = it.data?.get(CHILD_STATE) as String
+                    photo = it.data?.get(CHILD_PHOTO) as String
+                    binding.apply{
+                        contactName.text = name
+                        contactState.text = state
+                        contactImage.downloadAndSetImage(photo)
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w(TEST_TAG_DATA, "get contact error: ${exception.message}")
+                }
         }
     }
 
@@ -28,8 +47,12 @@ class ContactsAdapter: ListAdapter<Contact, ContactsAdapter.ContactHolder>(DiffC
     }
 
     override fun onBindViewHolder(holder: ContactHolder, position: Int) {
-        val contact = getItem(position)
-        holder.bind(contact)
+        val contactUid = getItem(position).uid
+        holder.bind(contactUid)
+        holder.itemView.setOnClickListener{ view ->
+            val action = ContactsFragmentDirections.actionContactsFragmentToSingleChatFragment(contactUid)
+            view.findNavController().navigate(action)
+        }
     }
 
     companion object {
@@ -44,6 +67,5 @@ class ContactsAdapter: ListAdapter<Contact, ContactsAdapter.ContactHolder>(DiffC
 
         }
     }
-
 
 }

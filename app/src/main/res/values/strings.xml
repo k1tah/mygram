@@ -1,10 +1,9 @@
-<resources>
-    <string name="app_name">MyGramm</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">MyGram</string>
     <string name="account_name">account name</string>
     <string name="account_number">account_number</string>
     <string name="open">open</string>
     <string name="close">close</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="new_group">New group</string>
     <string name="contacts">Contacts</string>
@@ -25,7 +24,7 @@
     <string name="notification_settings">Notification settings</string>
     <string name="sign_in">Sign in</string>
     <string name="you_phone_number">you phone number</string>
-    <string name="ok">ok</string>
+    <string name="ok" tools:ignore="PrivateResource">OK</string>
     <string name="confirm_code">Confirm code</string>
     <string name="enter_confirm_code">Enter confirm code:</string>
     <string name="click_here_to_set_phone_number">click here to set phone number</string>
@@ -44,4 +43,8 @@
     <string name="photoDialogTitleGallery">Gallery</string>
     <string name="photoDialogTitleClose">Close</string>
     <string name="photoDialogTitlePickImage">Select image</string>
+    <string name="send_message">send_message</string>
+    <string name="send_image_message">send image message</string>
+    <string name="user_image_message">user image message</string>
+    <string name="answer_image_message">answer image message</string>
 </resources>

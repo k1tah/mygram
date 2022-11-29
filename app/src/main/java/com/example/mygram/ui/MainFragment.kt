@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.mygram.R
 import com.example.mygram.databinding.FragmentMainFragmentBinding
 import com.example.mygram.utils.User.USER
+import com.example.mygram.utils.downloadAndSetImage
 import com.example.mygram.viewModel.ProfileViewModel
 import com.google.android.material.navigation.NavigationView
 import de.hdodenhof.circleimageview.CircleImageView
@@ -49,11 +50,16 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        updateUserData()
-        super.onStart()
-    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val owner = viewLifecycleOwner
+        profileViewModel.user.observe(owner){
+            header.findViewById<TextView>(R.id.drawer_layout_name).text = it.name
+            header.findViewById<TextView>(R.id.drawer_layout_phone).text = it.phone
+            header.findViewById<CircleImageView>(R.id.account_image).downloadAndSetImage(it.photoUrl)
+        }
+
         navigationView = binding.navigationView
         header = navigationView.getHeaderView(0
         )
@@ -72,13 +78,20 @@ class MainFragment : Fragment() {
 
         accountImage.setOnClickListener {
             navController.navigate(R.id.accountInfoFragment)
+            drawerLayout.close()
         }
 
         navigationView.setupWithNavController(navController)
         navigationView.setNavigationItemSelectedListener{
            when(it.itemId){
-               R.id.settings -> navController.navigate(R.id.accountInfoFragment)
-               R.id.contacts -> navController.navigate(R.id.contactsFragment)
+               R.id.settings -> {
+                   navController.navigate(R.id.accountInfoFragment)
+                   drawerLayout.close()
+               }
+               R.id.contacts -> {
+                   navController.navigate(R.id.contactsFragment)
+                   drawerLayout.close()
+               }
            }
            true
         }
@@ -94,6 +107,7 @@ class MainFragment : Fragment() {
     private fun updateUserData(){
         header.findViewById<TextView>(R.id.drawer_layout_name).text = USER.name
         header.findViewById<TextView>(R.id.drawer_layout_phone).text = USER.phone
+        header.findViewById<CircleImageView>(R.id.account_image).downloadAndSetImage(USER.photoUrl)
     }
 
 }

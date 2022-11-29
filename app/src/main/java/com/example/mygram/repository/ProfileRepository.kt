@@ -3,25 +3,20 @@ package com.example.mygram.repository
 import Const.TEST_TAG
 import Const.TEST_TAG_AUTH
 import Const.TEST_TAG_DATA
-import android.net.Uri
 import android.util.Log
 import com.example.mygram.domain.Contact
 import com.example.mygram.utils.*
-import com.example.mygram.utils.User.LISTCONTACTS
+import com.example.mygram.utils.User.LIST_CONTACTS
 import com.example.mygram.utils.User.USER
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-class ProfileRepository {
+object ProfileRepository {
 
     private val collectionUsers = databaseRefRoot.collection(NODE_USERS)
     private val collectionPhones = databaseRefRoot.collection(NODE_USER_PHONES)
     private val collectionUserContacts = databaseRefRoot.collection(NODE_USER_CONTACTS)
-
-    private val path = storageRefRoot
-        .child(FOLDER_PROFILE_PHOTO)
-        .child(UID)
 
     suspend fun updateBio(bio: String){
         withContext(Dispatchers.IO){
@@ -116,33 +111,16 @@ class ProfileRepository {
         }
     }
 
-    suspend fun updateUserPhoto(uri: Uri){
-        withContext(Dispatchers.IO){
-            path.putFile(uri)
-                .addOnCompleteListener{
-                    if (it.isSuccessful){
-                        path.downloadUrl.addOnCompleteListener { downloadTask ->
-                            if (downloadTask.isSuccessful){
-                                val photoUrl = downloadTask.result.toString()
-                                Log.d(TEST_TAG_DATA, "Current url: $photoUrl")
-                                collectionUsers.document(UID).update(CHILD_PHOTO, photoUrl)
-                                    .addOnCompleteListener { taskPhotoAddToDatabase ->
-                                        if (taskPhotoAddToDatabase.isSuccessful){
-                                            Log.d(TEST_TAG_DATA, "image adding sus to database")
-                                        }
-                                    }
-                                    .addOnFailureListener { addPhotoException ->
-                                        Log.d(TEST_TAG_DATA, "${addPhotoException.message}")
-                                    }
-                            }
-                        }
-                        Log.d(TEST_TAG_DATA, "image adding sus")
+    fun updateUserPhoto(photoUrl: String) {
+            collectionUsers.document(UID).update(CHILD_PHOTO, photoUrl)
+                .addOnCompleteListener { taskPhotoAddToDatabase ->
+                    if (taskPhotoAddToDatabase.isSuccessful) {
+                        USER.photoUrl = photoUrl
                     }
                 }
-                .addOnFailureListener {
-                    Log.d(TEST_TAG_DATA, "image adding failed ${it.message}")
+                .addOnFailureListener { addPhotoException ->
+                    Log.d(TEST_TAG_DATA, "${addPhotoException.message}")
                 }
-        }
     }
 
     suspend fun observeContacts(){
@@ -155,8 +133,8 @@ class ProfileRepository {
                 if (value != null){
                     value.data?.forEach {
                         val contact = Contact(uid = it.value.toString())
-                        if (!LISTCONTACTS.contains(contact)){
-                            LISTCONTACTS.add(contact)
+                        if (!LIST_CONTACTS.contains(contact)){
+                            LIST_CONTACTS.add(contact)
                         }
                     }
                 } else {
@@ -171,9 +149,11 @@ class ProfileRepository {
             collectionUserContacts.document(UID).get()
                 .addOnSuccessListener {
                     it.data?.forEach { userContact ->
-                        val contact = Contact(uid = userContact.value.toString())
-                        if (!LISTCONTACTS.contains(contact)){
-                            LISTCONTACTS.add(contact)
+                        val contact = Contact(
+                            uid = userContact.value.toString()
+                        )
+                        if (!LIST_CONTACTS.contains(contact)){
+                            LIST_CONTACTS.add(contact)
                         }
                     }
                 }
@@ -193,7 +173,7 @@ class ProfileRepository {
                         documentSnapshot.data?.forEach { mapPhones ->
                             contacts.forEach { contact ->
                                 if (mapPhones.value == contact.phone){
-                                    mapContacts.put(contact.phone, mapPhones.key)
+                                    mapContacts[contact.phone] = mapPhones.key
                                 }
                             }
                         }
@@ -210,6 +190,5 @@ class ProfileRepository {
 
         }
     }
-
 
 }

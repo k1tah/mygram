@@ -1,8 +1,6 @@
 package com.example.mygram.ui
 
-import Const.TEST_TAG_DATA
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.mygram.R
 import com.example.mygram.databinding.FragmentContactsBinding
 import com.example.mygram.ui.adapter.ContactsAdapter
-import com.example.mygram.utils.User.LISTCONTACTS
 import com.example.mygram.viewModel.ProfileViewModel
 
 
@@ -24,7 +21,7 @@ class ContactsFragment : Fragment() {
     private val binding get() = _binding!!
     //navController
     private var _navController: NavController? = null
-    private val navController get() = _navController!!
+    val navController get() = _navController!!
     //view Model
     private val profileViewModel: ProfileViewModel by activityViewModels()
 
@@ -52,10 +49,6 @@ class ContactsFragment : Fragment() {
             navController.navigateUp()
         }
 
-        LISTCONTACTS.forEach {
-            Log.d(TEST_TAG_DATA, it.uid)
-        }
-
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -64,4 +57,5 @@ class ContactsFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
+
 }
