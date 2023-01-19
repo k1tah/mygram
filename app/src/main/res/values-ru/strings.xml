@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">MyGram</string>
+    <string name="account_name">имя аккаунта</string>
+    <string name="account_number">номер аккаунта</string>
+    <string name="open">открыть</string>
+    <string name="close">закрыть</string>
+    <string name="contacts">Контакты</string>
+    <string name="settings">Настройки</string>
+    <string name="account_state">account_state</string>
+    <string name="account">Аккаунт</string>
+    <string name="message">Сообщение</string>
+    <string name="about">about</string>
+    <string name="test_message">test_message</string>
+    <string name="sign_in">Зарегистрироваться</string>
+    <string name="your_phone_number">Ваш номер телефона</string>
+    <string name="ok" tools:ignore="PrivateResource">OK</string>
+    <string name="confirm_code">Код подтверждения</string>
+    <string name="enter_confirm_code">Введите код подтверждения</string>
+    <string name="phone_number">ваш номер</string>
+    <string name="click_here_to_set_name">Нажмите чтобы изменить имя</string>
+    <string name="account_description">Описание аккаунта</string>
+    <string name="tell_us_about_yourself">Расскажите о себе</string>
+    <string name="save">Сохранить</string>
+    <string name="name">Имя</string>
+    <string name="change_name">Укажите имя</string>
+    <string name="delete_account">Удалить аккаунт</string>
+    <string name="sign_out">Выйти</string>
+    <string name="sms_code">СМС код</string>
+    <string name="photoDialogTitle">Выбрать источник</string>
+    <string name="photoDialogTitleCamera">Камера</string>
+    <string name="photoDialogTitleGallery">Галерея</string>
+    <string name="photoDialogTitleClose">Закрыть</string>
+    <string name="photoDialogTitlePickImage">Выбрать изображение</string>
+    <string name="send_message">отправить сообщение</string>
+    <string name="send_image_message">send image message</string>
+    <string name="user_image_message">user image message</string>
+    <string name="answer_image_message">answer image message</string>
+    <string name="image">изображение</string>
+</resources>

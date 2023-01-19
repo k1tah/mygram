@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ChangeBioFragment">
     <com.google.android.material.appbar.MaterialToolbar
@@ -29,17 +30,19 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/bio"
+            android:background="?attr/colorSecondary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/enter_your_bio_here" />
+            android:hint="@string/tell_us_about_yourself"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/confirm_bio"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorSecondary"
         android:text="@string/ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -5,28 +5,16 @@
     <item android:title=""
         android:id="@+id/test">
         <menu>
-
             <item
                 android:id="@+id/contacts"
                 android:title="@string/contacts"
                 android:icon="@drawable/ic_baseline_person_outline_24"
                 />
             <item
-                android:id="@+id/cals"
-                android:title="@string/cals"
-                android:icon="@drawable/ic_baseline_call_24"
-                />
-
-            <item
                 android:id="@+id/settings"
                 android:title="@string/settings"
                 android:icon="@drawable/ic_baseline_settings_24"
                 />
-        </menu>
-    </item>
-    <item android:title="">
-        <menu>
-
         </menu>
     </item>
 </menu>

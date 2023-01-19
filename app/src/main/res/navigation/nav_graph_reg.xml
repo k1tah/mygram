@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/aunteficationFragment"
-        android:name="com.example.mygram.ui.AunteficationFragment"
+        android:name="com.example.mygram.presentation.activity.fragments.AunteficationFragment"
         android:label="AunteficationFragment" >
         <action
             android:id="@+id/action_aunteficationFragment_to_confirmPhoneFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/confirmPhoneFragment"
-        android:name="com.example.mygram.ui.ConfirmPhoneFragment"
+        android:name="com.example.mygram.presentation.activity.fragments.ConfirmPhoneFragment"
         android:label="ConfirmPhoneFragment" >
         <action
             android:id="@+id/action_confirmPhoneFragment_to_aunteficationFragment"

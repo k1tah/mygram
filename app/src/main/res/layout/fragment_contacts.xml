@@ -6,13 +6,14 @@
     <data>
         <variable
             name="profileViewModel"
-            type="com.example.mygram.viewModel.ProfileViewModel" />
+            type="com.example.mygram.data.repository.viewModel.ProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ContactsFragment">
+        android:background="?attr/colorSecondary"
+        tools:context=".presentation.activity.fragments.ContactsFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/materialToolbar"

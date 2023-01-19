@@ -6,8 +6,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.mygram.APP_ACTIVITY
 
+const val RECORD_AUDIO = android.Manifest.permission.RECORD_AUDIO
 const val CAMERA = android.Manifest.permission.CAMERA
 const val READ_CONTACTS = android.Manifest.permission.READ_CONTACTS
+const val REQUEST_CODE_RECORD_AUDIO = 222
 const val REQUEST_CODE_READ_CONTACTS = 333
 const val REQUEST_CODE_CAMERA = 444
 

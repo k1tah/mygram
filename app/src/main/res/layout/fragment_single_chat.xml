@@ -7,9 +7,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="?attr/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/chat_toolbar"
@@ -43,43 +43,42 @@
             android:id="@+id/send_image_message"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
             android:background="?attr/colorPrimary"
             android:contentDescription="@string/send_image_message"
             android:foregroundGravity="center"
-            android:src="@drawable/ic_baseline_attach_file_24"
+            android:src="@drawable/ic_baseline_image_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/send_message"
-            android:visibility="gone"
-            android:foregroundGravity="center"
             android:layout_width="45dp"
             android:layout_height="60dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
             android:background="?attr/colorPrimary"
+            android:contentDescription="@string/send_message"
+            android:foregroundGravity="center"
             android:src="@drawable/ic_baseline_send_24"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/send_message" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:background="?attr/colorSecondary"
             android:id="@+id/chat_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="?attr/colorSecondary"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/message_edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chat_toolbar"
             app:layout_constraintVertical_bias="0.0"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/message_item">
-        </androidx.recyclerview.widget.RecyclerView>
+            tools:listitem="@layout/item_text_message"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

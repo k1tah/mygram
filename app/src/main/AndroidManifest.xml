@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mygram">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -20,11 +20,13 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ui.activity.AunteficationActivity"
+            android:screenOrientation="fullSensor"
+            android:name=".presentation.activity.AunteficationActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:screenOrientation="fullSensor"
+            android:name=".presentation.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +36,7 @@
         </activity>
 
         <activity
+            android:screenOrientation="fullSensor"
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat"/>
 

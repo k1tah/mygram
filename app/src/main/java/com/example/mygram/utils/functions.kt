@@ -1,6 +1,5 @@
 package com.example.mygram.utils
 
-import Const.TEST_TAG_DATA
 import android.annotation.SuppressLint
 import android.provider.ContactsContract
 import android.util.Log
@@ -11,11 +10,12 @@ import com.bumptech.glide.Glide
 import com.example.mygram.APP_ACTIVITY
 import com.example.mygram.R
 import com.example.mygram.domain.Contact
+import com.example.mygram.utils.TestTags.TEST_TAG_DATA
 import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun ImageView.downloadAndSetImage(url: String){
+fun ImageView.downloadAndSetImage(url: String) {
     Log.d(TEST_TAG_DATA, url)
     Glide.with(this.context)
         .load(url)
@@ -25,7 +25,7 @@ fun ImageView.downloadAndSetImage(url: String){
         .into(this)
 }
 
-fun CircleImageView.downloadAndSetImage(url: String){
+fun CircleImageView.downloadAndSetImage(url: String) {
     Glide.with(this.context)
         .load(url)
         .centerCrop()
@@ -34,11 +34,11 @@ fun CircleImageView.downloadAndSetImage(url: String){
         .into(this)
 }
 
-fun AppCompatActivity.showToast(message: String){
+fun AppCompatActivity.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
-fun showShortToast(message: String){
+fun showShortToast(message: String) {
     Toast.makeText(APP_ACTIVITY, message, Toast.LENGTH_SHORT).show()
 }
 
@@ -55,15 +55,14 @@ fun initPhoneContacts(): ArrayList<Contact>? {
         )
         cursor?.let {
             while (it.moveToNext()) {
-                val phone = it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                if (phone != User.USER.phone){
-                    val name = it.getString(it.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
-                    val contact = Contact(
-                        name,
-                        phone.replace(Regex("[\\s, -]"), "")
-                    )
-                    contacts.add(contact)
-                }
+                val phone =
+                    it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                val name = it.getString(it.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+                val contact = Contact(
+                    phone = phone.replace(Regex("[\\s, -]"), ""),
+                    uid = name
+                )
+                contacts.add(contact)
             }
         }
         cursor?.close()
@@ -77,4 +76,5 @@ fun String.asTime(): String {
     val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
     return timeFormat.format(date)
 }
+
 

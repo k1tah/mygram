@@ -1,40 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MyGram</string>
+    <string name="app_name" translatable="false">MyGram</string>
     <string name="account_name">account name</string>
-    <string name="account_number">account_number</string>
+    <string name="account_number">account number</string>
     <string name="open">open</string>
     <string name="close">close</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="new_group">New group</string>
     <string name="contacts">Contacts</string>
-    <string name="cals">Cals</string>
-    <string name="people_nearby">People nearby</string>
-    <string name="favourites">Favourites</string>
     <string name="settings">Settings</string>
-    <string name="invite">Invite</string>
-    <string name="mygram_features">Mygram features</string>
     <string name="account_state">account_state</string>
     <string name="account">Account</string>
-    <string name="help">Help</string>
-    <string name="new_group_title">New Group</string>
     <string name="message">message</string>
     <string name="about">about</string>
     <string name="test_message">test_message</string>
-    <string name="chat_settings">Chat settings</string>
-    <string name="notification_settings">Notification settings</string>
     <string name="sign_in">Sign in</string>
-    <string name="you_phone_number">you phone number</string>
+    <string name="your_phone_number">your phone number</string>
     <string name="ok" tools:ignore="PrivateResource">OK</string>
     <string name="confirm_code">Confirm code</string>
     <string name="enter_confirm_code">Enter confirm code:</string>
-    <string name="click_here_to_set_phone_number">click here to set phone number</string>
+    <string name="phone_number">phone number</string>
     <string name="click_here_to_set_name">click here to set name</string>
     <string name="account_description">account description</string>
     <string name="tell_us_about_yourself">tell us about yourself</string>
     <string name="save">save</string>
     <string name="name">Name</string>
     <string name="change_name">Change name</string>
-    <string name="enter_your_bio_here">Enter bio here</string>
     <string name="delete_account">Delete account</string>
     <string name="sign_out">Sign out</string>
     <string name="sms_code">sms code</string>
@@ -47,4 +35,6 @@
     <string name="send_image_message">send image message</string>
     <string name="user_image_message">user image message</string>
     <string name="answer_image_message">answer image message</string>
+    <string name="image">image</string>
+    <string name="rus_number">+7</string>
 </resources>

@@ -7,19 +7,22 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.mygram.ui.MainFragment"
+        android:name="com.example.mygram.presentation.activity.fragments.MainFragment"
         android:label="fragment_main_fragment"
-        tools:layout="@layout/fragment_main_fragment" >
+        tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_accountInfoFragment"
             app:destination="@id/accountInfoFragment" />
         <action
             android:id="@+id/action_mainFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_singleChatFragment"
+            app:destination="@id/singleChatFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountInfoFragment"
-        android:name="com.example.mygram.ui.AccountInfoFragment"
+        android:name="com.example.mygram.presentation.activity.fragments.SettingsFragment"
         android:label="AccountInfoFragment" >
         <action
             android:id="@+id/action_accountInfoFragment_to_mainFragment"
@@ -43,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/changeProfileNameFragment"
-        android:name="com.example.mygram.ui.ChangeProfileNameFragment"
+        android:name="com.example.mygram.presentation.activity.fragments.ChangeProfileNameFragment"
         android:label="ChangeProfileNameFragment" >
         <action
             android:id="@+id/action_changeProfileNameFragment_to_accountInfoFragment"
@@ -64,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="com.example.mygram.ui.ContactsFragment"
+        android:name="com.example.mygram.presentation.activity.fragments.ContactsFragment"
         android:label="ContactsFragment" >
         <action
             android:id="@+id/action_contactsFragment_to_mainFragment"
@@ -75,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/singleChatFragment"
-        android:name="com.example.mygram.ui.SingleChatFragment"
+        android:name="com.example.mygram.presentation.activity.fragments.SingleChatFragment"
         android:label="SingleChatFragment" >
         <action
             android:id="@+id/action_singleChatFragment_to_mainFragment"

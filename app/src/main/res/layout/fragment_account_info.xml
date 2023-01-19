@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.AccountInfoFragment">
+        tools:context=".presentation.activity.fragments.SettingsFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_settings"
@@ -24,45 +24,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/confirm_code_layout"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="?attr/colorPrimary"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/confirm_code_button"
-                android:layout_width="60dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/ok"
-                app:layout_constraintStart_toEndOf="@+id/code_input"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/code_input"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="88dp"
-                android:layout_marginTop="24dp"
-                android:background="@color/white_lite"
-                android:gravity="center"
-                android:hint="@string/sms_code"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -81,30 +42,20 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="48dp"
-                tools:src="@drawable/ic_baseline_account_circle_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/add_photo_background"
-                android:layout_width="64dp"
-                android:layout_height="74dp"
-                android:layout_marginStart="340dp"
-                android:layout_marginBottom="4dp"
-                android:src="@color/white_lite"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_baseline_account_circle_24" />
 
             <ImageView
                 android:id="@+id/add_photo"
                 android:layout_width="68dp"
                 android:layout_height="58dp"
-                android:layout_marginStart="337dp"
-                android:layout_marginBottom="14dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:padding="8dp"
                 android:src="@drawable/ic_baseline_add_a_photo_24"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/account_name_profile_top"
@@ -166,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/click_here_to_set_phone_number"
+                android:text="@string/phone_number"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/account_number_profile" />
 
@@ -271,18 +222,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/account_description_profile_container" />
 
-        <TextView
-            android:id="@+id/delete_account_button"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center"
-            android:text="@string/delete_account"
-            android:textColor="@color/red"
-            android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sign_out_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
